@@ -71,10 +71,21 @@ function __git.init
   __git.create_abbr gfa        git fetch --all --prune
   __git.create_abbr gfm        "git fetch origin (__git.default_branch) --prune; and git merge FETCH_HEAD"
   __git.create_abbr gfo        git fetch origin
-  __git.create_abbr gl         git pull
-  __git.create_abbr ggl        git pull origin \(__git.current_branch\)
-  __git.create_abbr gll        git pull origin
-  __git.create_abbr glr        git pull --rebase
+
+  # git pull abbreviations
+  __git.create_abbr gpr        git pull --autostash --rebase --verbose
+
+  # git push abbreviations
+  __git.create_abbr ggp        git push origin \(__git.current_branch\)
+  __git.create_abbr ggp!       git push origin \(__git.current_branch\) --force-with-lease
+  __git.create_abbr gp         git push --verbose
+  __git.create_abbr gp!        git push --force-with-lease
+  __git.create_abbr gpo        git push origin
+  __git.create_abbr gpo!       git push --force-with-lease origin
+  __git.create_abbr gpu        git push origin \(__git.current_branch\) --set-upstream --verbose
+  __git.create_abbr gpv        git push --no-verify
+  __git.create_abbr gpv!       git push --no-verify --force-with-lease
+
   __git.create_abbr glg        git log --stat
   __git.create_abbr glgg       git log --graph
   __git.create_abbr glgga      git log --graph --decorate --all
@@ -87,17 +98,6 @@ function __git.init
   __git.create_abbr gm         git merge
   __git.create_abbr gmt        git mergetool --no-prompt
   __git.create_abbr gmom       git merge origin/\(__git.default_branch\)
-  __git.create_abbr gp         git push
-  __git.create_abbr gp!        git push --force-with-lease
-  __git.create_abbr gpo        git push origin
-  __git.create_abbr gpo!       git push --force-with-lease origin
-  __git.create_abbr gpv        git push --no-verify
-  __git.create_abbr gpv!       git push --no-verify --force-with-lease
-  __git.create_abbr ggp        git push origin \(__git.current_branch\)
-  __git.create_abbr ggp!       git push origin \(__git.current_branch\) --force-with-lease
-  __git.create_abbr gpu        git push origin \(__git.current_branch\) --set-upstream
-  __git.create_abbr gpoat      "git push origin --all; and git push origin --tags"
-  __git.create_abbr ggpnp      "git pull origin (__git.current_branch); and git push origin (__git.current_branch)"
   __git.create_abbr gr         git remote -vv
   __git.create_abbr gra        git remote add
   __git.create_abbr grb        git rebase
@@ -114,7 +114,6 @@ function __git.init
   __git.create_abbr grbdi      git rebase develop --interactive
   __git.create_abbr grbdia     git rebase develop --interactive --autosquash
   __git.create_abbr grbs       git rebase --skip
-  __git.create_abbr ggu        git pull --rebase origin \(__git.current_branch\)
   __git.create_abbr grev       git revert
   __git.create_abbr grh        git reset
   __git.create_abbr grhh       git reset --hard
@@ -149,10 +148,6 @@ function __git.init
   __git.create_abbr gsw        git switch
   __git.create_abbr gswc       git switch --create
   __git.create_abbr gunignore  git update-index --no-assume-unchanged
-  __git.create_abbr gup        git pull --rebase
-  __git.create_abbr gupv       git pull --rebase -v
-  __git.create_abbr gupa       git pull --rebase --autostash
-  __git.create_abbr gupav      git pull --rebase --autostash -v
   __git.create_abbr gwch       git whatchanged -p --abbrev-commit --pretty=medium
 
   # git checkout abbreviations
@@ -191,10 +186,6 @@ function __git.init
   __git.create_abbr gwtpr      git worktree prune
   __git.create_abbr gwtrm      git worktree remove
   __git.create_abbr gwtulo     git worktree unlock
-
-  # GitLab push options
-  __git.create_abbr gmr        git push origin \(__git.current_branch\) --set-upstream -o merge_request.create
-  __git.create_abbr gmwps      git push origin \(__git.current_branch\) --set-upstream -o merge_request.create -o merge_request.merge_when_pipeline_succeeds
 
   # Cleanup declared functions
   functions -e __git.create_abbr
